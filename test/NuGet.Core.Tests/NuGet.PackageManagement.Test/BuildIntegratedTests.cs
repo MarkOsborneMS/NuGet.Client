@@ -112,7 +112,7 @@ namespace NuGet.Test
                     var format = new LockFileFormat();
 
                     // Act
-                    await nuGetPackageManager.InstallPackageAsync(buildIntegratedProjects[2], packageIdentity, new ResolutionContext(), new TestNuGetProjectContext(), new SourceCacheContext(),
+                    await nuGetPackageManager.InstallPackageAsync(buildIntegratedProjects[2], packageIdentity, new ResolutionContext(), new TestNuGetProjectContext(),
                             sourceRepositoryProvider.GetRepositories(), sourceRepositoryProvider.GetRepositories(), CancellationToken.None);
 
                     var parsedLockFiles = new List<LockFile>();
@@ -174,7 +174,7 @@ namespace NuGet.Test
                 // Act
                 // Set the direct install on the execution context of INuGetProjectContext before installing a package
                 await nuGetPackageManager.InstallPackageAsync(buildIntegratedProject, packageIdentity,
-                    new ResolutionContext(), testNuGetProjectContext, new SourceCacheContext(), sourceRepositoryProvider.GetRepositories().First(), null, token);
+                    new ResolutionContext(), testNuGetProjectContext, sourceRepositoryProvider.GetRepositories().First(), null, token);
 
                 var installedPackages = await buildIntegratedProject.GetInstalledPackagesAsync(CancellationToken.None);
                 var lockFile = ProjectJsonPathUtilities.GetLockFilePath(buildIntegratedProject.JsonConfigPath);
@@ -221,7 +221,7 @@ namespace NuGet.Test
                 string message = string.Empty;
 
                 // Act
-                await nuGetPackageManager.InstallPackageAsync(buildIntegratedProject, packageIdentity, new ResolutionContext(), new TestNuGetProjectContext(), new SourceCacheContext(),
+                await nuGetPackageManager.InstallPackageAsync(buildIntegratedProject, packageIdentity, new ResolutionContext(), new TestNuGetProjectContext(),
                         sourceRepositoryProvider.GetRepositories(), sourceRepositoryProvider.GetRepositories(), CancellationToken.None);
 
                 var installedPackages = await buildIntegratedProject.GetInstalledPackagesAsync(CancellationToken.None);
@@ -289,7 +289,6 @@ namespace NuGet.Test
                         packageIdentity,
                         new ResolutionContext(),
                         new TestNuGetProjectContext(),
-                        new SourceCacheContext(),
                         sourceRepositoryProvider.GetRepositories(),
                         sourceRepositoryProvider.GetRepositories(),
                         CancellationToken.None);
@@ -353,7 +352,6 @@ namespace NuGet.Test
                         packageIdentity2,
                         new ResolutionContext(),
                         new TestNuGetProjectContext(),
-                        new SourceCacheContext(),
                         sourceRepositoryProvider.GetRepositories(),
                         sourceRepositoryProvider.GetRepositories(),
                         CancellationToken.None);
@@ -368,7 +366,6 @@ namespace NuGet.Test
                         packageIdentity,
                         new ResolutionContext(),
                         new TestNuGetProjectContext(),
-                        new SourceCacheContext(),
                         sourceRepositoryProvider.GetRepositories(),
                         sourceRepositoryProvider.GetRepositories(),
                         CancellationToken.None);
@@ -420,7 +417,7 @@ namespace NuGet.Test
 
                 string message = string.Empty;
 
-                await nuGetPackageManager.InstallPackageAsync(buildIntegratedProject, packageIdentity, new ResolutionContext(), new TestNuGetProjectContext(), new SourceCacheContext(),
+                await nuGetPackageManager.InstallPackageAsync(buildIntegratedProject, packageIdentity, new ResolutionContext(), new TestNuGetProjectContext(),
                     sourceRepositoryProvider.GetRepositories(), sourceRepositoryProvider.GetRepositories(), CancellationToken.None);
 
                 var lockFile = ProjectJsonPathUtilities.GetLockFilePath(buildIntegratedProject.JsonConfigPath);
@@ -428,7 +425,7 @@ namespace NuGet.Test
                 File.Delete(lockFile);
 
                 // Act
-                await nuGetPackageManager.InstallPackageAsync(buildIntegratedProject, packageIdentity2, new ResolutionContext(), new TestNuGetProjectContext(), new SourceCacheContext(),
+                await nuGetPackageManager.InstallPackageAsync(buildIntegratedProject, packageIdentity2, new ResolutionContext(), new TestNuGetProjectContext(),
                         sourceRepositoryProvider.GetRepositories(), sourceRepositoryProvider.GetRepositories(), CancellationToken.None);
 
                 var installedPackages = await buildIntegratedProject.GetInstalledPackagesAsync(CancellationToken.None);
@@ -473,11 +470,11 @@ namespace NuGet.Test
 
                 string message = string.Empty;
 
-                await nuGetPackageManager.InstallPackageAsync(buildIntegratedProject, versioning105, new ResolutionContext(), new TestNuGetProjectContext(), new SourceCacheContext(),
+                await nuGetPackageManager.InstallPackageAsync(buildIntegratedProject, versioning105, new ResolutionContext(), new TestNuGetProjectContext(),
                         sourceRepositoryProvider.GetRepositories(), sourceRepositoryProvider.GetRepositories(), CancellationToken.None);
 
                 // Act
-                await nuGetPackageManager.InstallPackageAsync(buildIntegratedProject, versioning107, new ResolutionContext(), new TestNuGetProjectContext(), new SourceCacheContext(),
+                await nuGetPackageManager.InstallPackageAsync(buildIntegratedProject, versioning107, new ResolutionContext(), new TestNuGetProjectContext(),
                         sourceRepositoryProvider.GetRepositories(), sourceRepositoryProvider.GetRepositories(), CancellationToken.None);
 
                 var installedPackages = await buildIntegratedProject.GetInstalledPackagesAsync(CancellationToken.None);
@@ -521,7 +518,6 @@ namespace NuGet.Test
                 string message = string.Empty;
 
                 await nuGetPackageManager.InstallPackageAsync(buildIntegratedProject, oldJson, new ResolutionContext(), new TestNuGetProjectContext(),
-                await nuGetPackageManager.InstallPackageAsync(buildIntegratedProject, versioning105, new ResolutionContext(), new TestNuGetProjectContext(), new SourceCacheContext(),
                         sourceRepositoryProvider.GetRepositories(), sourceRepositoryProvider.GetRepositories(), CancellationToken.None);
 
                 // Act
@@ -538,7 +534,6 @@ namespace NuGet.Test
                     buildIntegratedProject,
                     actions,
                     new TestNuGetProjectContext(),
-                    new SourceCacheContext(),
                     CancellationToken.None);
 
                 var installedPackages = await buildIntegratedProject.GetInstalledPackagesAsync(CancellationToken.None);
@@ -667,10 +662,10 @@ namespace NuGet.Test
 
                 string message = string.Empty;
 
-                await nuGetPackageManager.InstallPackageAsync(buildIntegratedProject, oldMvvm, new ResolutionContext(), new TestNuGetProjectContext(), new SourceCacheContext(),
+                await nuGetPackageManager.InstallPackageAsync(buildIntegratedProject, versioning105, new ResolutionContext(), new TestNuGetProjectContext(), new SourceCacheContext(),
                         sourceRepositoryProvider.GetRepositories(), sourceRepositoryProvider.GetRepositories(), CancellationToken.None);
 
-                await nuGetPackageManager.InstallPackageAsync(buildIntegratedProject, oldJson, new ResolutionContext(), new TestNuGetProjectContext(), new SourceCacheContext(),
+                await nuGetPackageManager.InstallPackageAsync(buildIntegratedProject, jsonNet608, new ResolutionContext(), new TestNuGetProjectContext(), new SourceCacheContext(),
                         sourceRepositoryProvider.GetRepositories(), sourceRepositoryProvider.GetRepositories(), CancellationToken.None);
 
                 // Act
@@ -686,7 +681,6 @@ namespace NuGet.Test
                     buildIntegratedProject,
                     actions,
                     new TestNuGetProjectContext(),
-                    new SourceCacheContext(),
                     CancellationToken.None);
 
                 var installedPackages = await buildIntegratedProject.GetInstalledPackagesAsync(CancellationToken.None);
@@ -741,7 +735,7 @@ namespace NuGet.Test
 
                 string message = string.Empty;
 
-                await nuGetPackageManager.InstallPackageAsync(buildIntegratedProject, oldJson, new ResolutionContext(), new TestNuGetProjectContext(), new SourceCacheContext(),
+                await nuGetPackageManager.InstallPackageAsync(buildIntegratedProject, versioning105, new ResolutionContext(), new TestNuGetProjectContext(), new SourceCacheContext(),
                         sourceRepositoryProvider.GetRepositories(), sourceRepositoryProvider.GetRepositories(), CancellationToken.None);
 
                 // Update to the latest
@@ -757,7 +751,6 @@ namespace NuGet.Test
                     buildIntegratedProject,
                     actions,
                     new TestNuGetProjectContext(),
-                    new SourceCacheContext(),
                     CancellationToken.None);
 
                 // Act
@@ -773,7 +766,6 @@ namespace NuGet.Test
                     buildIntegratedProject,
                     actions,
                     new TestNuGetProjectContext(),
-                    new SourceCacheContext(),
                     CancellationToken.None);
 
                 var installedPackages = await buildIntegratedProject.GetInstalledPackagesAsync(CancellationToken.None);
@@ -816,7 +808,7 @@ namespace NuGet.Test
 
                 string message = string.Empty;
 
-                await nuGetPackageManager.InstallPackageAsync(buildIntegratedProject, versioning105, new ResolutionContext(), new TestNuGetProjectContext(), new SourceCacheContext(),
+                await nuGetPackageManager.InstallPackageAsync(buildIntegratedProject, versioning105, new ResolutionContext(), new TestNuGetProjectContext(),
                         sourceRepositoryProvider.GetRepositories(), sourceRepositoryProvider.GetRepositories(), CancellationToken.None);
 
                 // Act
@@ -833,7 +825,6 @@ namespace NuGet.Test
                     buildIntegratedProject,
                     actions,
                     new TestNuGetProjectContext(),
-                    new SourceCacheContext(),
                     CancellationToken.None);
 
                 var installedPackages = await buildIntegratedProject.GetInstalledPackagesAsync(CancellationToken.None);
@@ -890,7 +881,6 @@ namespace NuGet.Test
                     versioning105,
                     new ResolutionContext(),
                     new TestNuGetProjectContext(),
-                    new SourceCacheContext(),
                     sourceRepositoryProvider.GetRepositories(),
                     sourceRepositoryProvider.GetRepositories(),
                     CancellationToken.None);
@@ -900,7 +890,6 @@ namespace NuGet.Test
                     json604,
                     new ResolutionContext(),
                     new TestNuGetProjectContext(),
-                    new SourceCacheContext(),
                     sourceRepositoryProvider.GetRepositories(),
                     sourceRepositoryProvider.GetRepositories(),
                     CancellationToken.None);
@@ -910,7 +899,6 @@ namespace NuGet.Test
                     am330,
                     new ResolutionContext(),
                     new TestNuGetProjectContext(),
-                    new SourceCacheContext(),
                     sourceRepositoryProvider.GetRepositories(),
                     sourceRepositoryProvider.GetRepositories(),
                     CancellationToken.None);
@@ -931,7 +919,6 @@ namespace NuGet.Test
                     buildIntegratedProject,
                     actions,
                     new TestNuGetProjectContext(),
-                    new SourceCacheContext(),
                     CancellationToken.None);
 
                 var installedPackages = await buildIntegratedProject.GetInstalledPackagesAsync(CancellationToken.None);
@@ -995,7 +982,7 @@ namespace NuGet.Test
 
                 string message = string.Empty;
 
-                await nuGetPackageManager.InstallPackageAsync(buildIntegratedProject, versioning105, new ResolutionContext(), new TestNuGetProjectContext(), new SourceCacheContext(),
+                await nuGetPackageManager.InstallPackageAsync(buildIntegratedProject, versioning105, new ResolutionContext(), new TestNuGetProjectContext(),
                         sourceRepositoryProvider.GetRepositories(), sourceRepositoryProvider.GetRepositories(), CancellationToken.None);
 
                 // Act
@@ -1012,7 +999,6 @@ namespace NuGet.Test
                     buildIntegratedProject,
                     actions,
                     new TestNuGetProjectContext(),
-                    new SourceCacheContext(),
                     CancellationToken.None);
 
                 var installedPackages = await buildIntegratedProject.GetInstalledPackagesAsync(CancellationToken.None);
@@ -1210,7 +1196,6 @@ namespace NuGet.Test
                     packageIdentityA,
                     new ResolutionContext(),
                     new TestNuGetProjectContext(),
-                    new SourceCacheContext(),
                     sourceRepositoryProvider.GetRepositories(),
                     sourceRepositoryProvider.GetRepositories(),
                     CancellationToken.None);
@@ -1219,7 +1204,6 @@ namespace NuGet.Test
                     packageIdentityB,
                     new ResolutionContext(),
                     new TestNuGetProjectContext(),
-                    new SourceCacheContext(),
                     sourceRepositoryProvider.GetRepositories(),
                     sourceRepositoryProvider.GetRepositories(),
                     CancellationToken.None);
@@ -1281,7 +1265,7 @@ namespace NuGet.Test
                 string message = string.Empty;
 
                 // Act
-                await nuGetPackageManager.InstallPackageAsync(buildIntegratedProject, packageIdentity, new ResolutionContext(), new TestNuGetProjectContext(), new SourceCacheContext(),
+                await nuGetPackageManager.InstallPackageAsync(buildIntegratedProject, packageIdentity, new ResolutionContext(), new TestNuGetProjectContext(),
                         sourceRepositoryProvider.GetRepositories(), sourceRepositoryProvider.GetRepositories(), CancellationToken.None);
 
                 // Assert
@@ -1319,7 +1303,7 @@ namespace NuGet.Test
 
                 string message = string.Empty;
 
-                await nuGetPackageManager.InstallPackageAsync(buildIntegratedProject, packageIdentity, new ResolutionContext(), new TestNuGetProjectContext(), new SourceCacheContext(),
+                await nuGetPackageManager.InstallPackageAsync(buildIntegratedProject, packageIdentity, new ResolutionContext(), new TestNuGetProjectContext(),
                         sourceRepositoryProvider.GetRepositories(), sourceRepositoryProvider.GetRepositories(), CancellationToken.None);
 
                 buildIntegratedProject.ExecuteInitScriptAsyncCalls.Clear();
@@ -1361,13 +1345,13 @@ namespace NuGet.Test
 
                 string message = string.Empty;
 
-                await nuGetPackageManager.InstallPackageAsync(buildIntegratedProject, packageIdentity, new ResolutionContext(), new TestNuGetProjectContext(), new SourceCacheContext(),
+                await nuGetPackageManager.InstallPackageAsync(buildIntegratedProject, packageIdentity, new ResolutionContext(), new TestNuGetProjectContext(),
                     sourceRepositoryProvider.GetRepositories(), sourceRepositoryProvider.GetRepositories(), CancellationToken.None);
 
                 buildIntegratedProject.ExecuteInitScriptAsyncCalls.Clear();
 
                 // Act
-                await nuGetPackageManager.InstallPackageAsync(buildIntegratedProject, updateIdentity, new ResolutionContext(), new TestNuGetProjectContext(), new SourceCacheContext(),
+                await nuGetPackageManager.InstallPackageAsync(buildIntegratedProject, updateIdentity, new ResolutionContext(), new TestNuGetProjectContext(),
                         sourceRepositoryProvider.GetRepositories(), sourceRepositoryProvider.GetRepositories(), CancellationToken.None);
 
                 // Assert
