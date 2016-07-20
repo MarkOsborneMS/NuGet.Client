@@ -661,10 +661,10 @@ namespace NuGet.Test
 
                 string message = string.Empty;
 
-                await nuGetPackageManager.InstallPackageAsync(buildIntegratedProject, versioning105, new ResolutionContext(), new TestNuGetProjectContext(), new SourceCacheContext(),
+                await nuGetPackageManager.InstallPackageAsync(buildIntegratedProject, oldMvvm, new ResolutionContext(), new TestNuGetProjectContext(), new SourceCacheContext(),
                         sourceRepositoryProvider.GetRepositories(), sourceRepositoryProvider.GetRepositories(), CancellationToken.None);
 
-                await nuGetPackageManager.InstallPackageAsync(buildIntegratedProject, jsonNet608, new ResolutionContext(), new TestNuGetProjectContext(), new SourceCacheContext(),
+                await nuGetPackageManager.InstallPackageAsync(buildIntegratedProject, oldJson, new ResolutionContext(), new TestNuGetProjectContext(), new SourceCacheContext(),
                         sourceRepositoryProvider.GetRepositories(), sourceRepositoryProvider.GetRepositories(), CancellationToken.None);
 
                 // Act
@@ -734,7 +734,7 @@ namespace NuGet.Test
 
                 string message = string.Empty;
 
-                await nuGetPackageManager.InstallPackageAsync(buildIntegratedProject, versioning105, new ResolutionContext(), new TestNuGetProjectContext(), new SourceCacheContext(),
+                await nuGetPackageManager.InstallPackageAsync(buildIntegratedProject, oldJson, new ResolutionContext(), new TestNuGetProjectContext(), new SourceCacheContext(),
                         sourceRepositoryProvider.GetRepositories(), sourceRepositoryProvider.GetRepositories(), CancellationToken.None);
 
                 // Update to the latest
