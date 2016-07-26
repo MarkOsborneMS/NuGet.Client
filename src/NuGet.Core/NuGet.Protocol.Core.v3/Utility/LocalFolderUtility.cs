@@ -150,13 +150,13 @@ namespace NuGet.Protocol
             }
 
             // Verify the root path is a valid path.
-            GetAndVerifyRootDirectory(root);
+            var path = GetAndVerifyRootDirectory(root);
 
             // Search directories starting with the top directory for any package matching the identity
             // If multiple packages are found in the same directory that match (ex: 1.0, 1.0.0.0)
             // then favor the exact non-normalized match. If no exact match is found take the first
             // using the file system sort order. This is to match the legacy nuget 2.8.x behavior.
-            foreach (var directoryList in GetNupkgsFromFlatFolderChunked(root, log))
+            foreach (var directoryList in GetNupkgsFromFlatFolderChunked(path.FullName, log))
             {
                 LocalPackageInfo fallbackMatch = null;
 
@@ -667,6 +667,24 @@ namespace NuGet.Protocol
             yield break;
         }
 
+        public static string MakeFileUriLocalPath(string path)
+        {
+            string result = path;
+            try
+            {
+                var uri = new Uri(path, UriKind.RelativeOrAbsolute);
+                if (uri.Scheme == "file")
+                {
+                    result = uri.LocalPath;
+                }
+            }
+            // Return result unchanged if Uri invalid
+            catch (UriFormatException) { }
+            catch (InvalidOperationException) { }
+
+            return result;
+        }
+
         /// <summary>
         /// Verify that a path could be a valid directory. Throw a FatalProtocolException otherwise.
         /// </summary>
@@ -678,7 +696,7 @@ namespace NuGet.Protocol
             try
             {
                 // Verify that the directory is a valid path.
-                rootDirectoryInfo = new DirectoryInfo(root);
+                rootDirectoryInfo = new DirectoryInfo(MakeFileUriLocalPath(root));
 
                 // The root must also be parsable as a URI (relative or absolute). This rejects
                 // sources that have the weird "C:Source" format. For more information about this 
